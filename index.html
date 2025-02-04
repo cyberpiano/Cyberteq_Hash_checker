@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberteq Hash Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: white;
+            color: black;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border: 3px solid orange;
+        }
+        input {
+                width: calc(100% - 5px); /* Adjust width to fit within the container */
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid orange;
+                border-radius: 5px;
+                display: block;
+                box-sizing: border-box; /* Ensures padding is included in width calculation */
+        }
+
+        button {
+            background: orange;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: darkorange;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <img src="cyberteq.jpg" alt="Cyberteq Logo" width="150">
+    <h1>Cyberteq Hash Checker</h1>
+    <div class="container">
+        <input type="text" id="originalHash" placeholder="Insert the Original Hash">
+        <input type="text" id="verifyHash" placeholder="Insert the Hash to Check">
+        <button onclick="checkHash()">Check Hash</button>
+        <p id="result" class="result"></p>
+    </div>
+
+    <script>
+        function checkHash() {
+            let originalHash = document.getElementById("originalHash").value;
+            let verifyHash = document.getElementById("verifyHash").value;
+            let result = document.getElementById("result");
+
+            if (originalHash === verifyHash) {
+                result.textContent = "Verified, Correct Hash";
+                result.className = "result correct";
+            } else {
+                result.textContent = "Incorrect hash, Hash do not Match";
+                result.className = "result incorrect";
+            }
+        }
+    </script>
+</body>
+</html>
