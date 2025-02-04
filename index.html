@@ -22,15 +22,15 @@
             border: 3px solid orange;
         }
         input {
-                width: calc(100% - 5px); /* Adjust width to fit within the container */
-                padding: 10px;
-                margin: 10px 0;
-                border: 1px solid orange;
-                border-radius: 5px;
-                display: block;
-                box-sizing: border-box; /* Ensures padding is included in width calculation */
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid orange;
+            border-radius: 5px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
-
         button {
             background: orange;
             color: white;
@@ -54,6 +54,11 @@
         .incorrect {
             color: red;
         }
+        .disclaimer {
+            color: blue;
+            font-size: 14px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -64,21 +69,39 @@
         <input type="text" id="verifyHash" placeholder="Insert the Hash to Check">
         <button onclick="checkHash()">Check Hash</button>
         <p id="result" class="result"></p>
+        <p id="disclaimer" class="disclaimer"></p>
     </div>
 
     <script>
         function checkHash() {
-            let originalHash = document.getElementById("originalHash").value;
-            let verifyHash = document.getElementById("verifyHash").value;
+            let originalHash = document.getElementById("originalHash").value.trim();
+            let verifyHash = document.getElementById("verifyHash").value.trim();
             let result = document.getElementById("result");
+            let disclaimer = document.getElementById("disclaimer");
 
+            // Check if inputs are empty
+            if (!originalHash || !verifyHash) {
+                disclaimer.textContent = "⚠️ Please input both hashes before checking.";
+                result.textContent = "";
+                result.className = "result";
+                return;
+            }
+
+            // Check hash match
             if (originalHash === verifyHash) {
-                result.textContent = "Verified, Correct Hash";
+                result.textContent = "✅ Verified, Correct Hash";
                 result.className = "result correct";
             } else {
-                result.textContent = "Incorrect hash, Hash do not Match";
+                result.textContent = "❌ Incorrect hash, Hashes do not match";
                 result.className = "result incorrect";
             }
+
+            // Clear input fields after checking
+            document.getElementById("originalHash").value = "";
+            document.getElementById("verifyHash").value = "";
+
+            // Clear disclaimer
+            disclaimer.textContent = "";
         }
     </script>
 </body>
